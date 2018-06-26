@@ -18,7 +18,6 @@ public class ArrayBasedStack<T> implements DefaultStack<T> {
     }
 
     public ArrayBasedStack(int initSize) {
-//        array = Arrays.copyOf(array,initSize);
         array = (T[])(new Object[initSize]);
     }
 
