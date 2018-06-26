@@ -18,6 +18,9 @@ public class SimpleNode<T> {
     SimpleNode<T> prev;
     SimpleNode<T> next;
 
+    public SimpleNode(T data){
+        this.data = data;
+    }
 
 }
 
