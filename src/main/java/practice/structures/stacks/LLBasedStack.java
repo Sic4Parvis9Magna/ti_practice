@@ -1,24 +1,17 @@
 package practice.structures.stacks;
 
 import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 import practice.structures.lists.DSCLinkedList;
 import practice.structures.lists.DefaultLinkedList;
-import practice.structures.lists.OutOfIntegerRangeException;
 import practice.structures.lists.SimpleNode;
 
 import java.util.Optional;
 
 
-@Accessors(chain = true)
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LLBasedStack<T> implements DefaultStack<T>{
-    @Setter(value = AccessLevel.PRIVATE)
-    @Getter(value = AccessLevel.PRIVATE)
     DefaultLinkedList<T> defaultLinkedList;
 
     public LLBasedStack(){
