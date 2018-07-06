@@ -27,6 +27,7 @@ public class ArrayBasedStack<T> implements DefaultStack<T> {
         Optional<T> result = peek();
         array[size-1] = null;
         size--;
+        if((array.length-size) == (int)(size/2))array = cutHalf(array);
         return result;
     }
 
@@ -38,7 +39,7 @@ public class ArrayBasedStack<T> implements DefaultStack<T> {
 
     @Override
     public DefaultStack<T> push(T item) {
-        if (size == array.length) array = resize(this.array);
+        if (size == array.length) array = resize(array);
         array[size] = item;
         size++;
         return this;
@@ -50,6 +51,11 @@ public class ArrayBasedStack<T> implements DefaultStack<T> {
         if (newSize > Integer.MAX_VALUE) throw new OutOfIntegerRangeException();
         return Arrays.copyOf(array, (int) newSize);
 
+    }
+    private T[] cutHalf(T[] array){
+        int oldSize = array.length;
+        double newSize = size + oldSize/2;
+        return Arrays.copyOf(array, (int) newSize);
     }
 
     @Override
