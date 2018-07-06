@@ -1,14 +1,20 @@
 package practice.algorithms.tasks;
 
+import lombok.experimental.FieldDefaults;
 import practice.structures.stacks.DefaultStack;
 import practice.structures.stacks.LLBasedStack;
 
 import java.util.Arrays;
 import java.util.List;
 
-public interface MathBalancedString {
-    List<String> RIGTH_BRACKETS = Arrays.asList(")","}","]");
-    List<String> LEFT_BRACKETS =Arrays.asList("(","{","[");
+import static lombok.AccessLevel.PRIVATE;
+
+@FieldDefaults(level = PRIVATE)
+public final class MathBalancedString {
+  private static List<String> RIGTH_BRACKETS = Arrays.asList(")","}","]");
+  private static List<String> LEFT_BRACKETS =Arrays.asList("(","{","[");
+
+  private MathBalancedString(){}
 
     static int checkBrackets(String content){
         DefaultStack<String> stack = new LLBasedStack<>();
