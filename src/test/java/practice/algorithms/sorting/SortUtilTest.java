@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,5 +31,16 @@ class SortUtilTest {
         Arrays.sort(array);
 
         assertThat(SortUtil.isSorted(array), is(true));
+    }
+
+    @Test
+    @DisplayName("Swapping elements of an array")
+    void swap(){
+        int length = array.length;
+        int a = array[0];
+        int b = array[length-1];
+        SortUtil.swap(array,0,length-1);
+        assertThat(array[length-1],is(a));
+        assertThat(array[0],is(b));
     }
 }

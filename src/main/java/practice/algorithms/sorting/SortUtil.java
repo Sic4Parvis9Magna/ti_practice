@@ -20,4 +20,9 @@ public final class SortUtil {
         }
         return true;
     }
+    public static void swap(int[] array, int a, int b) {
+        int temp = array[b];
+        array[b] = array[a];
+        array[a] = temp;
+    }
 }
