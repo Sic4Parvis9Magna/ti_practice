@@ -25,4 +25,12 @@ public final class SortUtil {
         array[b] = array[a];
         array[a] = temp;
     }
+
+    public static void shuffle(int[] array){
+        Random random = new Random();
+        int size  = array.length;
+        for(int i=0; i < size; i++)
+            swap(array, random.nextInt(size), random.nextInt(size));
+    }
+
 }
