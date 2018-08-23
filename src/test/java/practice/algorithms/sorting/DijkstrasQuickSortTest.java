@@ -7,8 +7,6 @@ import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.*;
-import static practice.algorithms.sorting.DijkstrasQuickSort.shuffle;
 
 class DijkstrasQuickSortTest {
 
@@ -17,14 +15,18 @@ class DijkstrasQuickSortTest {
     @BeforeEach
     void setUp() {
         array = SortUtil.generateRandomArray(10,100);
+        for (int i = 0; i <3; i++)
+            array[i] = 13;
+        SortUtil.shuffle(array);
+        System.out.println("Initial array!");
         System.out.println(Arrays.toString(array));
-
     }
 
     @Test
     void sort() {
         assertThat(SortUtil.isSorted(array), is(false));
         DijkstrasQuickSort.sort(array);
+        System.out.println("After di sort:");
         System.out.println(Arrays.toString(array));
         assertThat(SortUtil.isSorted(array), is(true));
     }

@@ -1,60 +1,43 @@
 package practice.algorithms.sorting;
 
 import java.util.Arrays;
-import java.util.Random;
 
+import static practice.algorithms.sorting.SortUtil.shuffle;
 import static practice.algorithms.sorting.SortUtil.swap;
 
 public class DijkstrasQuickSort {
 
     public static void sort(int[] array){
         shuffle(array);
-        System.out.println(Arrays.toString(array));
-       mySort(array,0,array.length-1);
+        mySort(array,0,array.length-1);
     }
 
     public static void mySort(int[] array,int lowerIndex,int higherIndex){
-        int j = partitioning(array,lowerIndex,higherIndex);
-        mySort(array,lowerIndex,j-1);
-        mySort(array,j+1,higherIndex);
+        if(lowerIndex >= higherIndex) return;
+        int[] couple  = partitioning(array,lowerIndex,higherIndex);
+        mySort(array, lowerIndex, couple[0]-1);
+        mySort(array, couple[1]+1, higherIndex);
     }
 
-    private static int partitioning(int[] array, int lowerIndex, int higherIndex) {
+    private static int[] partitioning(int[] array, int lowerIndex, int higherIndex) {
         int pivot = array[lowerIndex];
-        int lower = lowerIndex+1;
-        int higher = higherIndex;
-        int current = lower;
-        while(current != higher){
-            System.out.printf("low = %d cur = %d max =%d%n",lower, current,higher);
-            System.out.printf("low = %d cur = %d max =%d%n",array[lower], array[current],array[higher]);
+        int current = lowerIndex+1;
+        while(current <= higherIndex){
             if(array[current] < pivot) {
-
-                swap(array, lower, current);
-                lower++;
-                current++;
-                System.out.println("1");
-            }else
-            if(array[current] > pivot){
-
-                swap(array,higher,current);
-                higher--;
-                System.out.println("1");
-            }else
-            {
-
-                current++;
-                System.out.println("3");
+                swap(array, lowerIndex, current);
+                ++lowerIndex;++current;
 
             }
+            else if(array[current] > pivot){
+                swap(array,higherIndex,current);
+                --higherIndex;
+
+            }
+            else{
+                ++current;
+            }
         }
-        swap(array,lowerIndex,lower);
-        return current;
+        return new int[]{lowerIndex,higherIndex};
     }
 
-    public static void shuffle(int[] array) {
-        Random random = new Random();
-        int size  = array.length;
-        for(int i=0; i < size; i++) swap(array,
-                random.nextInt(size), random.nextInt(size));
-    }
 }
